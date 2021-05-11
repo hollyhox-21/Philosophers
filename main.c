@@ -6,19 +6,31 @@
 #include <sys/time.h>
 #include "ft_atoi.c"
 #define SUCCESS 0
+#define BRIGHT_BLACK ("\x1B[90m")
+#define BRIGHT_RED ("\x1B[91m")
+#define BRIGHT_GREEN ("\x1B[92m")
+#define BRIGHT_YELLOW ("\x1B[93m")
+#define BRIGHT_BLUE ("\x1B[94m")
+#define BRIGHT_MAGENTA ("\x1B[95m")
+#define BRIGHT_CYAN  ("\x1B[96m")
+#define BRIGHT_WHITE ("\x1B[97m")
+#define BG_BLUE ("\x1B[104m")
+#define END ("\033[0m")
 //#define MS 1000
 
-typedef struct	s_table {
+typedef struct		s_table {
+	struct timeval	begin_era;
 	int				count_philos;
 	int				time_to_sleep;
 	int				time_to_eat;
 	int				time_to_die;
 	int 			count_eat;
+	pthread_mutex_t death;
 	pthread_mutex_t	*forks;
 	int				who_is_die;
-}				t_table;
+}					t_table;
 
-typedef struct	s_philo {
+typedef struct		s_philo {
 	int				numb;
 	int				when_eat;
 	int				when_sleep;
@@ -30,7 +42,7 @@ typedef struct	s_philo {
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	
-}				t_philo;
+}					t_philo;
 
 void	ft_print_table_struct(t_table *table)
 {
@@ -62,25 +74,35 @@ void	ft_print_philo_struct(t_philo *philo)
 	printf("addr RIGHT_fork\t%p\n", philo->right_fork);
 }
 
-void	ft_culc_time(int count_time)
+long int	difference_in_time(struct timeval begin, struct timeval current)
+{
+	return ((current.tv_sec * 1000000 + current.tv_usec) - (begin.tv_sec * 1000000 + begin.tv_usec));
+}
+
+void	ft_wait_time(int count_time)
 {
 
 	struct timeval	begin_era;
 	struct timeval	current_time;
-	static long int		time_stamp = 0;
-	
+
 	gettimeofday(&begin_era, NULL);
 	gettimeofday(&current_time, NULL);
-	while (((current_time.tv_sec * 1000000 + current_time.tv_usec) - (begin_era.tv_sec * 1000000 + begin_era.tv_usec)) < count_time * 1000)
+	while (difference_in_time(begin_era, current_time) < count_time * 1000)
 		gettimeofday(&current_time, NULL);
-	time_stamp += count_time;
-	printf("%ld ", time_stamp);
 }
 
-void 	ft_start_sleep(t_philo *philo)
+long int		ft_calc_time_stamp(t_table *table)
 {
-	ft_culc_time(philo->table->time_to_sleep);
-	printf("ms %d is sleeping\n", philo->numb);
+	struct timeval	current_time;
+
+	gettimeofday(&current_time, NULL);
+	return (difference_in_time(table->begin_era, current_time) / 1000);
+}
+
+void	ft_start_sleep(t_philo *philo)
+{
+	printf("%ld ms %d %sis sleeping%s\n", ft_calc_time_stamp(philo->table), philo->numb, BRIGHT_YELLOW, END);
+	ft_wait_time(philo->table->time_to_sleep);
 }
 
 void	ft_start_eat(t_philo *philo)
@@ -88,25 +110,62 @@ void	ft_start_eat(t_philo *philo)
 	if (philo->numb % 2)
 	{
 		pthread_mutex_lock(philo->left_fork);
+		printf("%ld ms %d %shas taken a fork%s\n", ft_calc_time_stamp(philo->table), philo->numb, BRIGHT_MAGENTA, END);
 		pthread_mutex_lock(philo->right_fork);
+		printf("%ld ms %d %shas taken a fork%s\n", ft_calc_time_stamp(philo->table), philo->numb, BRIGHT_MAGENTA, END);
 	}
 	else
 	{
 		pthread_mutex_lock(philo->right_fork);
+		printf("%ld ms %d %shas taken a fork%s\n", ft_calc_time_stamp(philo->table), philo->numb, BRIGHT_MAGENTA, END);
 		pthread_mutex_lock(philo->left_fork);
+		printf("%ld ms %d %shas taken a fork%s\n", ft_calc_time_stamp(philo->table), philo->numb, BRIGHT_MAGENTA, END);
 	}
-	ft_culc_time(philo->table->time_to_eat);
-	printf("ms %d is eating\n", philo->numb);
+	printf("%ld ms %d %sis eating%s\n",ft_calc_time_stamp(philo->table), philo->numb, BRIGHT_GREEN, END);
+	ft_wait_time(philo->table->time_to_eat);
 	if (philo->numb % 2)
 	{
-		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
+		pthread_mutex_unlock(philo->left_fork);
 	}
 	else
 	{
-		pthread_mutex_unlock(philo->right_fork);
 		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->right_fork);
 	}
+}
+
+void	*ft_counter_die(void *arg)
+{
+	t_philo		*philo;
+	struct		timeval	begin_era;
+	struct		timeval	current_time;
+	
+	philo = (t_philo *)arg;
+	gettimeofday(&begin_era, NULL);
+	gettimeofday(&current_time, NULL);
+	while (!philo->when_eat) {
+		if (difference_in_time(begin_era, current_time) < philo->table->time_to_die * 1000)
+		{
+			gettimeofday(&current_time, NULL);
+		}
+		else
+		{
+			pthread_mutex_lock(&philo->table->death);
+			*philo->flag_die = 1;
+			printf("%ld ms %d %sdied%s\n", ft_calc_time_stamp(philo->table), philo->numb, BRIGHT_RED, END);
+		}
+	}
+	
+	return (SUCCESS);
+}
+
+void	ft_start_think(t_philo *philo)
+{
+	pthread_t	thread_die;
+	
+	printf("%ld ms %d %sis thinking%s\n", ft_calc_time_stamp(philo->table), philo->numb, BRIGHT_BLUE, END);
+	pthread_create(&thread_die, NULL, ft_counter_die, philo);
 }
 
 void	*start_routin(void *atr)
@@ -116,10 +175,10 @@ void	*start_routin(void *atr)
 	thread_philo = (t_philo *)atr;
 	while(!thread_philo->table->who_is_die)
 	{
-		
+		pthread_mutex_unlock(&thread_philo->table->death);
 		ft_start_eat(thread_philo);
 		ft_start_sleep(thread_philo);
-		printf("%d ms %d is thinking\n", thread_philo->numb);
+		ft_start_think(thread_philo);
 	}
 	return (SUCCESS);
 }
@@ -171,7 +230,9 @@ t_philo	*ft_creat_philo(t_table *table)
 t_table	*ft_create_table(char **av)
 {
 	t_table	*table;
+	int i;
 	
+	i = 0;
 	table = (t_table *) malloc(sizeof(t_table) * 1);
 	if (!table)
 		return (NULL);
@@ -179,26 +240,34 @@ t_table	*ft_create_table(char **av)
 	table->time_to_die = ft_atoi(av[2]);
 	table->time_to_eat = ft_atoi(av[3]);
 	table->time_to_sleep = ft_atoi(av[4]);
+	table->time_to_die -= (table->time_to_eat + table->time_to_sleep);
+	gettimeofday(&table->begin_era, NULL);
 	if (av[5])
 		table->count_eat = ft_atoi(av[5]);
 	else
 		table->count_eat = 0;
+	pthread_mutex_init(&table->death, NULL);
 	table->forks = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t) * table->count_philos);
 	if (!table->forks)
 		return (NULL);
+	while (i < table->count_philos)
+	{
+		pthread_mutex_init(&table->forks[i], NULL);
+		i++;
+	}
 	table->who_is_die = 0;
 	return (table);
 }
 
-int 	ft_create_threads(t_table *table, t_philo *philos)
+void	ft_create_threads(t_table *table, t_philo *philos)
 {
 	pthread_t	thread_philo[table->count_philos];
 	int			i;
 	int			thread_status;
+
 	i = 0;
 	while (i < table->count_philos)
 	{
-		pthread_mutex_init(&table->forks[i], NULL);
 		pthread_create(&thread_philo[i], NULL, start_routin, &philos[i]);
 		i++;
 	}
@@ -209,7 +278,6 @@ int 	ft_create_threads(t_table *table, t_philo *philos)
 		printf("%d\n", thread_status);
 		i++;
 	}
-	return (0);
 }
 
 int		ft_start_simul(char **av)
@@ -219,8 +287,7 @@ int		ft_start_simul(char **av)
 
 	table = ft_create_table(av);
 	philos = ft_creat_philo(table);
-	if (ft_create_threads(table, philos))
-		return (1);
+	ft_create_threads(table, philos);
 	
 //	PRINT STUCT
 //	ft_print_table_struct(table);
