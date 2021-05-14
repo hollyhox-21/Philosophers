@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rjoella <rjoella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/29 11:49:41 by rjoella           #+#    #+#             */
-/*   Updated: 2020/11/07 19:48:27 by rjoella          ###   ########.fr       */
+/*   Created: 2020/10/28 19:36:59 by rjoella           #+#    #+#             */
+/*   Updated: 2021/05/14 15:28:53 by rjoella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putnbr_fd(int n, int fd)
-{
-	long long int m;
+#include "../include/philo_one.h"
 
-	m = n;
-	if (m < 0)
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	k;
+
+	k = 0;
+	while (k < n)
 	{
-		ft_putchar_fd('-', fd);
-		m = m * -1;
+		*((char *)s + k) = '\0';
+		k++;
 	}
-	if (m >= 10)
-	{
-		ft_putnbr_fd(m / 10, fd);
-		ft_putchar_fd(m % 10 + 48, fd);
-	}
-	if (m >= 0 && m < 10)
-		ft_putchar_fd(m % 10 + 48, fd);
 }

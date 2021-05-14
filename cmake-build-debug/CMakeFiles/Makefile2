@@ -64,10 +64,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/rjoella/Desktop/Philosophers
+CMAKE_SOURCE_DIR = /Users/rjoella/Desktop/PHIL
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/rjoella/Desktop/Philosophers/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/rjoella/Desktop/PHIL/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -96,14 +96,14 @@ clean: CMakeFiles/Philosophers.dir/clean
 CMakeFiles/test_time.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_time.dir/build.make CMakeFiles/test_time.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_time.dir/build.make CMakeFiles/test_time.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/rjoella/Desktop/Philosophers/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target test_time"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/rjoella/Desktop/PHIL/cmake-build-debug/CMakeFiles --progress-num=6,7 "Built target test_time"
 .PHONY : CMakeFiles/test_time.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_time.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rjoella/Desktop/Philosophers/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rjoella/Desktop/PHIL/cmake-build-debug/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_time.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rjoella/Desktop/Philosophers/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rjoella/Desktop/PHIL/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/test_time.dir/rule
 
 # Convenience name for target.
@@ -123,14 +123,14 @@ CMakeFiles/test_time.dir/clean:
 CMakeFiles/Philosophers.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Philosophers.dir/build.make CMakeFiles/Philosophers.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Philosophers.dir/build.make CMakeFiles/Philosophers.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/rjoella/Desktop/Philosophers/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target Philosophers"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/rjoella/Desktop/PHIL/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5 "Built target Philosophers"
 .PHONY : CMakeFiles/Philosophers.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Philosophers.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rjoella/Desktop/Philosophers/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rjoella/Desktop/PHIL/cmake-build-debug/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Philosophers.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rjoella/Desktop/Philosophers/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rjoella/Desktop/PHIL/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/Philosophers.dir/rule
 
 # Convenience name for target.

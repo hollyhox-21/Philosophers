@@ -1,5 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Philosophers.dir/actions.c.o"
+  "CMakeFiles/Philosophers.dir/enter_point.c.o"
   "CMakeFiles/Philosophers.dir/main.c.o"
+  "CMakeFiles/Philosophers.dir/utils.c.o"
   "Philosophers"
   "Philosophers.pdb"
 )

@@ -4,7 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/rjoella/Desktop/Philosophers/main.c" "/Users/rjoella/Desktop/Philosophers/cmake-build-debug/CMakeFiles/Philosophers.dir/main.c.o"
+  "/Users/rjoella/Desktop/PHIL/actions.c" "/Users/rjoella/Desktop/PHIL/cmake-build-debug/CMakeFiles/Philosophers.dir/actions.c.o"
+  "/Users/rjoella/Desktop/PHIL/enter_point.c" "/Users/rjoella/Desktop/PHIL/cmake-build-debug/CMakeFiles/Philosophers.dir/enter_point.c.o"
+  "/Users/rjoella/Desktop/PHIL/main.c" "/Users/rjoella/Desktop/PHIL/cmake-build-debug/CMakeFiles/Philosophers.dir/main.c.o"
+  "/Users/rjoella/Desktop/PHIL/utils.c" "/Users/rjoella/Desktop/PHIL/cmake-build-debug/CMakeFiles/Philosophers.dir/utils.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

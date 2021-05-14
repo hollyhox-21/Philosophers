@@ -68,10 +68,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/rjoella/Desktop/Philosophers
+CMAKE_SOURCE_DIR = /Users/rjoella/Desktop/PHIL
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/rjoella/Desktop/Philosophers/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/rjoella/Desktop/PHIL/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rjoella/Desktop/Philosophers/cmake-build-debug/CMakeFiles /Users/rjoella/Desktop/Philosophers/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rjoella/Desktop/PHIL/cmake-build-debug/CMakeFiles /Users/rjoella/Desktop/PHIL/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rjoella/Desktop/Philosophers/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rjoella/Desktop/PHIL/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -155,6 +155,60 @@ Philosophers: cmake_check_build_system
 Philosophers/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Philosophers.dir/build.make CMakeFiles/Philosophers.dir/build
 .PHONY : Philosophers/fast
+
+actions.o: actions.c.o
+
+.PHONY : actions.o
+
+# target to build an object file
+actions.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Philosophers.dir/build.make CMakeFiles/Philosophers.dir/actions.c.o
+.PHONY : actions.c.o
+
+actions.i: actions.c.i
+
+.PHONY : actions.i
+
+# target to preprocess a source file
+actions.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Philosophers.dir/build.make CMakeFiles/Philosophers.dir/actions.c.i
+.PHONY : actions.c.i
+
+actions.s: actions.c.s
+
+.PHONY : actions.s
+
+# target to generate assembly for a file
+actions.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Philosophers.dir/build.make CMakeFiles/Philosophers.dir/actions.c.s
+.PHONY : actions.c.s
+
+enter_point.o: enter_point.c.o
+
+.PHONY : enter_point.o
+
+# target to build an object file
+enter_point.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Philosophers.dir/build.make CMakeFiles/Philosophers.dir/enter_point.c.o
+.PHONY : enter_point.c.o
+
+enter_point.i: enter_point.c.i
+
+.PHONY : enter_point.i
+
+# target to preprocess a source file
+enter_point.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Philosophers.dir/build.make CMakeFiles/Philosophers.dir/enter_point.c.i
+.PHONY : enter_point.c.i
+
+enter_point.s: enter_point.c.s
+
+.PHONY : enter_point.s
+
+# target to generate assembly for a file
+enter_point.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Philosophers.dir/build.make CMakeFiles/Philosophers.dir/enter_point.c.s
+.PHONY : enter_point.c.s
 
 main.o: main.c.o
 
@@ -210,6 +264,33 @@ test.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_time.dir/build.make CMakeFiles/test_time.dir/test.c.s
 .PHONY : test.c.s
 
+utils.o: utils.c.o
+
+.PHONY : utils.o
+
+# target to build an object file
+utils.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Philosophers.dir/build.make CMakeFiles/Philosophers.dir/utils.c.o
+.PHONY : utils.c.o
+
+utils.i: utils.c.i
+
+.PHONY : utils.i
+
+# target to preprocess a source file
+utils.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Philosophers.dir/build.make CMakeFiles/Philosophers.dir/utils.c.i
+.PHONY : utils.c.i
+
+utils.s: utils.c.s
+
+.PHONY : utils.s
+
+# target to generate assembly for a file
+utils.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Philosophers.dir/build.make CMakeFiles/Philosophers.dir/utils.c.s
+.PHONY : utils.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -220,12 +301,21 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Philosophers"
 	@echo "... test_time"
+	@echo "... actions.o"
+	@echo "... actions.i"
+	@echo "... actions.s"
+	@echo "... enter_point.o"
+	@echo "... enter_point.i"
+	@echo "... enter_point.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"
+	@echo "... utils.o"
+	@echo "... utils.i"
+	@echo "... utils.s"
 .PHONY : help
 
 
