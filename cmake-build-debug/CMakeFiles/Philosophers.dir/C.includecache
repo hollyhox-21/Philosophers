@@ -8,6 +8,22 @@
 
 /Users/rjoella/Desktop/Philosophers/ft_atoi.c
 
+/Users/rjoella/Desktop/Philosophers/ft_bzero.c
+
+/Users/rjoella/Desktop/Philosophers/ft_itoa.c
+
+/Users/rjoella/Desktop/Philosophers/ft_putchar_fd.c
+
+/Users/rjoella/Desktop/Philosophers/ft_putendl_fd.c
+
+/Users/rjoella/Desktop/Philosophers/ft_putnbr_fd.c
+
+/Users/rjoella/Desktop/Philosophers/ft_putstr_fd.c
+
+/Users/rjoella/Desktop/Philosophers/ft_strjoin.c
+
+/Users/rjoella/Desktop/Philosophers/ft_strlen.c
+
 /Users/rjoella/Desktop/Philosophers/main.c
 stdio.h
 -
@@ -23,4 +39,20 @@ sys/time.h
 -
 ft_atoi.c
 /Users/rjoella/Desktop/Philosophers/ft_atoi.c
+ft_putchar_fd.c
+/Users/rjoella/Desktop/Philosophers/ft_putchar_fd.c
+ft_putnbr_fd.c
+/Users/rjoella/Desktop/Philosophers/ft_putnbr_fd.c
+ft_putstr_fd.c
+/Users/rjoella/Desktop/Philosophers/ft_putstr_fd.c
+ft_putendl_fd.c
+/Users/rjoella/Desktop/Philosophers/ft_putendl_fd.c
+ft_strlen.c
+/Users/rjoella/Desktop/Philosophers/ft_strlen.c
+ft_bzero.c
+/Users/rjoella/Desktop/Philosophers/ft_bzero.c
+ft_itoa.c
+/Users/rjoella/Desktop/Philosophers/ft_itoa.c
+ft_strjoin.c
+/Users/rjoella/Desktop/Philosophers/ft_strjoin.c
 
