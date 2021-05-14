@@ -6,7 +6,7 @@
 /*   By: rjoella <rjoella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:05:42 by rjoella           #+#    #+#             */
-/*   Updated: 2021/05/14 15:29:11 by rjoella          ###   ########.fr       */
+/*   Updated: 2021/05/14 19:25:51 by rjoella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	ft_print_msg(t_philo *philo, char *msg)
 	pthread_mutex_lock(&philo->table->print);
 	if (!*philo->flag_die)
 		write(1, res, ft_strlen(res));
-	pthread_mutex_unlock(&philo->table->print);
 	free(res);
+	pthread_mutex_unlock(&philo->table->print);
 }
 
 void	ft_free(t_philo *philos, t_table *table)
@@ -80,6 +80,7 @@ void	ft_free(t_philo *philos, t_table *table)
 	pthread_mutex_destroy(&table->death);
 	while (++i < table->count_philos)
 		pthread_mutex_destroy(&table->forks[i]);
+	free(table->forks);
 	free(table);
 	free(philos);
 }

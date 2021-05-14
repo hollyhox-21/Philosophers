@@ -6,7 +6,7 @@
 /*   By: rjoella <rjoella@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 14:05:21 by rjoella           #+#    #+#             */
-/*   Updated: 2021/05/14 15:28:49 by rjoella          ###   ########.fr       */
+/*   Updated: 2021/05/14 19:26:34 by rjoella          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ int	ft_create_threads(t_table *table, t_philo *philos)
 		pthread_join(philo[i], NULL);
 		i++;
 	}
+	free(philo);
 	return (0);
 }
